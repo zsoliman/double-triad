@@ -1,8 +1,9 @@
 # Players have a deck
 # deck has cards (a deck is an array of cards)
 # cards have stats
+require 'securerandom'
 
-class Players
+class Player
 	attr_accessor :name, :email, :password, :deck
   def initialize(name, email, password, deck=[])
 		@name = name
@@ -12,6 +13,8 @@ class Players
   end
 end
 
+# In order to save this information, we need to create a Cards table in a database
+# When we create a card object, we would store that card object in the database
 class Card
 	attr_accessor :name, :top, :left, :bottom, :right, :element, :img
 	def initialize(name, top, left, bottom, right, element=nil, img=nil)
@@ -22,5 +25,6 @@ class Card
 		@right = right
 		@element = element
 		@img = img
+		@card_id = SecureRandom.uuid
 	end
 end
