@@ -2,6 +2,20 @@
 # deck has cards (a deck is an array of cards)
 # cards have stats
 require 'securerandom'
+require 'sqlite3'
+
+# create a database
+db = SQLite3::Database.new ("game.db")
+
+# Create a table
+rows = db.execute <<-SQL
+  create table numbers (
+    name varchar(30),
+    val int
+  );
+SQL
+
+p rows
 
 class Player
 	attr_accessor :name, :email, :password, :deck
